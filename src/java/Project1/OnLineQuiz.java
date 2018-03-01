@@ -121,8 +121,8 @@ public class OnLineQuiz {
             System.out.println("Driver loaded");
 
             // Establish a connection
-            //Connection conn = DriverManager.getConnection("jdbc:mysql://35.185.94.191/javabook" , "cklecker", "tiger");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/javabook" , "root", "m0nkwork");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://35.185.94.191/javabook" , "cklecker", "tiger");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/javabook" , "root", "m0nkwork");
             System.out.println("Database connected");
             
             insertString    = "insert into intro11equiz (chapterNo, questionNo, question, choiceA, choiceB, choiceC, choiceD, choiceE, answerKey, hint) values (?,?,?,?,?,?,?,?,?,?);";
