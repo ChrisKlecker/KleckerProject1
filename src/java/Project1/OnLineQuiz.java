@@ -94,7 +94,7 @@ public class OnLineQuiz {
         }
         return "";
     }
-    public OnLineQuiz(){
+    public OnLineQuiz() throws SQLException{
         
         insertString    = "";
         queryString     = "";
@@ -112,16 +112,17 @@ public class OnLineQuiz {
         initializeJdbc();
 }
 
-    private void initializeJdbc() {
+    private void initializeJdbc() throws SQLException {
         
-        try {
+            Connection conn = null;
+            try {
 
             // Load the JDBC driver
             Class.forName("com.mysql.jdbc.Driver");
             System.out.println("Driver loaded");
 
             // Establish a connection
-            Connection conn = DriverManager.getConnection("jdbc:mysql://35.185.94.191/javabook" , "cklecker", "tiger");
+            conn = DriverManager.getConnection("jdbc:mysql://35.185.94.191/klecker" , "klecker", "tiger");
             //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/javabook" , "root", "m0nkwork");
             System.out.println("Database connected");
             
@@ -144,7 +145,12 @@ public class OnLineQuiz {
 
         }
         catch (Exception ex) {
-            ex.printStackTrace();
+                
+            if(ex.getMessage().contentEquals("Table \'klecker.intro11equiz\' doesn\'t exist") && conn != null){
+                BuildTablesForDatabase(conn);
+            }
+            else
+                ex.printStackTrace();
         }
     }     
     
